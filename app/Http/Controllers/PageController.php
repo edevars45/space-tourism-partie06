@@ -13,7 +13,7 @@ class PageController extends Controller
 
     public function destinations()
     {
-        return view('pages.destinations'); // ou 'destinations' selon ton fichier
+        return view('pages.destinations'); 
     }
 
     public function crew()
