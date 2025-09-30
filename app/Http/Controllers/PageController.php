@@ -8,7 +8,7 @@ class PageController extends Controller
 {
     public function home()
     {
-        return view('home');
+        return view('pages.home');
     }
 
     public function destinations()
@@ -18,11 +18,11 @@ class PageController extends Controller
 
     public function crew()
     {
-        return view('crew');
+        return view('pages.crew');
     }
 
     public function technology()
     {
-        return view('technology');
+        return view('pages.technology');
     }
 }
