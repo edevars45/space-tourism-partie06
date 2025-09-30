@@ -20,6 +20,6 @@
   <section class="mb-10">
     <h2 class="text-xl font-semibold">CAPSULE SPATIALE</h2>
     <p class="mb-4">Une capsule spatiale est utilisée pour transporter l’équipage dans l’espace et les ramener sur Terre en toute sécurité.</p>
-    <img src="{{ asset('images/technology/capsule.jpg') }}" alt="Capsule Spatiale">
+    <img src="{{ asset('images/technology/space-capsule.jpg') }}" alt="Capsule Spatiale">
   </section>
 @endsection
