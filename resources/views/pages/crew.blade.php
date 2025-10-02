@@ -11,7 +11,7 @@
   {{-- SECTION avec image de fond + voile sombre pour lisibilité --}}
   <section
     class="relative bg-cover bg-center py-16"
-    style="background-image: url('{{ asset('images/background-home.jpg') }}');"
+    style="background-image: url('{{ asset('images/background-crew.jpg') }}');"
     aria-label="{{ __('crew.title') }}"
   >
     <div class="absolute inset-0 bg-black/45"></div>

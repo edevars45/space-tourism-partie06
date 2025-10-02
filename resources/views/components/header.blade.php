@@ -1,60 +1,131 @@
 {{-- resources/views/components/header.blade.php --}}
-@php $currentLocale = app()->getLocale(); @endphp
+@php
+  // Je récupère la langue courante
+  $currentLocale = app()->getLocale();
+@endphp
 
-<header role="banner" class="bg-white/10 backdrop-blur border-b border-gray-700">
-  <div class="max-w-7xl mx-auto flex items-center justify-between p-4">
+<header role="banner"
+        class="absolute top-0 left-0 w-full flex items-center justify-between px-6 py-4 z-50">
 
-    {{-- Logo --}}
-    <a href="{{ route('home') }}" class="flex items-center gap-2">
-      <img src="{{ asset('assets/logo.png') }}" alt="Space Tourism" class="h-8 w-auto">
-      <span class="font-semibold text-white">Space Tourism</span>
-    </a>
+  {{-- Mon logo cliquable qui ramène à la page d'accueil --}}
+  <a href="{{ route('home') }}">
+    <img src="{{ asset('assets/logo.png') }}" alt="Space Tourism" class="h-10 w-auto">
+  </a>
 
-{{-- Navigation principale --}}
-<nav aria-label="Navigation principale"
-     class="hidden sm:flex items-center gap-8 uppercase text-white tracking-wider">
+  {{-- ============================ --}}
+{{-- ============================ --}}
+{{-- NAVIGATION DESKTOP --}}
+{{-- ============================ --}}
+<nav role="navigation" aria-label="Menu principal"
+     class="hidden sm:flex items-center gap-12 bg-white/5 backdrop-blur-lg px-12 py-4
+            uppercase text-white tracking-[0.25em] text-sm font-light">
 
-  {{-- Lien Accueil --}}
+  {{-- Accueil --}}
   <a href="{{ route('home') }}"
-     class="{{ request()->routeIs('home')
-        ? 'border-b-2 border-white pb-1'
-        : 'opacity-70 hover:opacity-100' }}">
-    {{ __('nav.home') }}
+     class="{{ request()->routeIs('home') ? 'border-b-2 border-white pb-1 font-normal' : 'opacity-70 hover:opacity-100' }}">
+     <span class="font-bold mr-2">00</span> {{ __('nav.home') }}
   </a>
 
-  {{-- Lien Destinations --}}
+  {{-- Destination --}}
   <a href="{{ route('destinations') }}"
-     class="{{ request()->routeIs('destinations')
-        ? 'border-b-2 border-white pb-1'
-        : 'opacity-70 hover:opacity-100' }}">
-    {{ __('nav.destinations') }}
+     class="{{ request()->routeIs('destinations') ? 'border-b-2 border-white pb-1 font-normal' : 'opacity-70 hover:opacity-100' }}">
+     <span class="font-bold mr-2">01</span> {{ __('nav.destinations') }}
   </a>
 
-  {{-- Lien Crew --}}
+  {{-- Équipage --}}
   <a href="{{ route('crew') }}"
-     class="{{ request()->routeIs('crew')
-        ? 'border-b-2 border-white pb-1'
-        : 'opacity-70 hover:opacity-100' }}">
-    {{ __('nav.crew') }}
+     class="{{ request()->routeIs('crew') ? 'border-b-2 border-white pb-1 font-normal' : 'opacity-70 hover:opacity-100' }}">
+     <span class="font-bold mr-2">02</span> {{ __('nav.crew') }}
   </a>
 
-  {{-- Lien Technology --}}
+  {{-- Technologie --}}
   <a href="{{ route('technology') }}"
-     class="{{ request()->routeIs('technology')
-        ? 'border-b-2 border-white pb-1'
-        : 'opacity-70 hover:opacity-100' }}">
-    {{ __('nav.technology') }}
+     class="{{ request()->routeIs('technology') ? 'border-b-2 border-white pb-1 font-normal' : 'opacity-70 hover:opacity-100' }}">
+     <span class="font-bold mr-2">03</span> {{ __('nav.technology') }}
   </a>
 </nav>
-
-
-    {{-- Sélecteur de langue --}}
-    <div class="flex items-center gap-2">
-      <a href="{{ route('lang.switch','fr') }}"
-         class="{{ $currentLocale==='fr' ? 'font-bold underline' : 'hover:underline' }}">FR</a>
-      <span>|</span>
-      <a href="{{ route('lang.switch','en') }}"
-         class="{{ $currentLocale==='en' ? 'font-bold underline' : 'hover:underline' }}">EN</a>
-    </div>
+  {{-- ============================ --}}
+  {{-- SÉLECTEUR LANGUE (desktop) --}}
+  {{-- ============================ --}}
+  <div class="hidden sm:flex items-center gap-2 text-white uppercase text-xs tracking-widest">
+    <a href="{{ route('lang.switch','fr') }}"
+       aria-label="Changer la langue en français"
+       class="{{ $currentLocale==='fr' ? 'font-bold underline' : 'hover:underline opacity-70' }}">
+       FR
+    </a>
+    <span>|</span>
+    <a href="{{ route('lang.switch','en') }}"
+       aria-label="Switch language to English"
+       class="{{ $currentLocale==='en' ? 'font-bold underline' : 'hover:underline opacity-70' }}">
+       EN
+    </a>
   </div>
+
+  {{-- ============================ --}}
+  {{-- BOUTON MENU BURGER (mobile) --}}
+  {{-- ============================ --}}
+  <button id="menu-btn"
+          aria-label="Ouvrir le menu mobile"
+          aria-expanded="false"
+          class="sm:hidden text-white text-3xl">☰</button>
 </header>
+
+{{-- ============================ --}}
+{{-- MENU MOBILE (50% écran, semi-transparent) --}}
+{{-- ============================ --}}
+<nav id="mobile-menu"
+     role="navigation"
+     aria-label="Menu mobile"
+     class="hidden fixed top-0 right-0 w-1/2 h-full bg-black/80 backdrop-blur-lg
+            text-white p-8 flex-col gap-8 uppercase tracking-[0.25em] text-base font-light z-50">
+
+  {{-- Bouton fermer --}}
+  <button id="close-btn"
+          aria-label="Fermer le menu mobile"
+          class="self-end text-3xl mb-12">✖</button>
+
+  {{-- Ici je n’affiche PAS les numéros (contrairement au desktop) --}}
+  <a href="{{ route('home') }}">{{ __('nav.home') }}</a>
+  <a href="{{ route('destinations') }}">{{ __('nav.destinations') }}</a>
+  <a href="{{ route('crew') }}">{{ __('nav.crew') }}</a>
+  <a href="{{ route('technology') }}">{{ __('nav.technology') }}</a>
+
+  {{-- Sélecteur de langue version mobile --}}
+  <div class="mt-auto text-xs tracking-widest">
+    <a href="{{ route('lang.switch','fr') }}"
+       aria-label="Changer la langue en français"
+       class="{{ $currentLocale==='fr' ? 'font-bold underline' : 'hover:underline opacity-70' }}">
+       FR
+    </a> |
+    <a href="{{ route('lang.switch','en') }}"
+       aria-label="Switch language to English"
+       class="{{ $currentLocale==='en' ? 'font-bold underline' : 'hover:underline opacity-70' }}">
+       EN
+    </a>
+  </div>
+</nav>
+
+{{-- ============================ --}}
+{{-- SCRIPT DU MENU BURGER --}}
+{{-- ============================ --}}
+<script>
+  const menuBtn = document.getElementById('menu-btn');
+  const closeBtn = document.getElementById('close-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  // Ouvrir le menu
+  menuBtn.addEventListener('click', () => {
+    mobileMenu.classList.remove('hidden');
+    mobileMenu.classList.add('flex'); // affichage flex en colonne
+    mobileMenu.classList.add('flex-col');
+    menuBtn.setAttribute('aria-expanded', 'true');
+  });
+
+  // Fermer le menu
+  closeBtn.addEventListener('click', () => {
+    mobileMenu.classList.add('hidden');
+    mobileMenu.classList.remove('flex');
+    mobileMenu.classList.remove('flex-col');
+    menuBtn.setAttribute('aria-expanded', 'false');
+  });
+</script>

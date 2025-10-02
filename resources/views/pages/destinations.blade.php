@@ -1,99 +1,52 @@
-{{-- resources/views/pages/destinations.blade.php --}}
 @extends('layouts.app')
 
 @section('title', __('destinations.title'))
 
 @section('content')
-  {{-- Section avec image de fond --}}
-  <section class="relative min-h-[calc(100vh-140px)] bg-cover bg-center"
-    style="background-image: url('{{ asset('images/technology/background-stars.jpg') }}');">
-    {{-- Overlay sombre --}}
-    <div class="absolute inset-0 bg-black/50"></div>
+  <section class="min-h-screen bg-cover bg-center"
+    style="background-image: url('{{ asset('images/background-destinations.jpg') }}');">
 
-    {{-- Contenu principal --}}
-    <div class="relative z-10 max-w-6xl mx-auto px-6 py-16">
+    >
+    {{-- Overlay sombre pour lisibilité --}}
+    <div class="absolute inset-0 bg-black/40"></div>
 
-      {{-- Titre --}}
-      <h1 class="text-3xl md:text-4xl font-bold mb-10 text-white text-center">
-        {{ __('destinations.heading') }}
+    <div class="relative z-10 max-w-6xl mx-auto px-6 py-16 text-center md:text-left">
+
+      {{-- Titre principal --}}
+      <h1 class="uppercase tracking-widest text-gray-300 text-sm md:text-base mb-8">
+        01 {{ __('destinations.pick') }}
       </h1>
 
-      @php
-        $planets = [
-          ['key' => 'moon', 'img' => asset('images/destinations/moon.png')],
-          ['key' => 'mars', 'img' => asset('images/destinations/mars.png')],
-          ['key' => 'europa', 'img' => asset('images/destinations/europa.png')],
-          ['key' => 'titan', 'img' => asset('images/destinations/titan.png')],
-        ];
-      @endphp
-
-      {{-- SLIDER --}}
-      <div id="planet-slider" class="relative">
-        @foreach ($planets as $i => $p)
-          @php $key = $p['key']; @endphp
-          <article class="planet-slide grid md:grid-cols-2 gap-10 items-center mb-12 {{ $i === 0 ? '' : 'hidden' }}"
-            data-index="{{ $i }}" aria-hidden="{{ $i === 0 ? 'false' : 'true' }}">
-            {{-- Image --}}
-            <div class="order-1 flex justify-center">
-              <img src="{{ $p['img'] }}" alt="{{ __('destinations.' . $key . '.alt') }}"
-                class="w-60 md:w-80 object-contain drop-shadow-xl" loading="lazy">
-            </div>
-
-            {{-- Texte --}}
-            <div class="order-2 text-white">
-              <h2 class="text-2xl md:text-3xl font-semibold mb-4 uppercase">
-                {{ __('destinations.' . $key . '.name') }}
-              </h2>
-              <p class="text-gray-200 mb-4 leading-relaxed">
-                {{ __('destinations.' . $key . '.description') }}
-              </p>
-              <p class="text-sm text-gray-300">
-                <strong>{{ __('destinations.' . $key . '.distance') }}</strong>
-                <br>
-                <strong>{{ __('destinations.' . $key . '.travel') }}</strong>
-              </p>
-
-            </div>
-          </article>
+      {{-- Navigation entre planètes --}}
+      <nav class="flex justify-center md:justify-start gap-6 mb-10">
+        @foreach (['moon', 'mars', 'europa', 'titan'] as $p)
+          <a href="{{ route('destinations.show', $p) }}"
+            class="uppercase pb-2 border-b-2 {{ $planet === $p ? 'border-white text-white' : 'border-transparent text-gray-400 hover:border-gray-300' }}">
+            {{ __('destinations.' . $p . '.name') }}
+          </a>
         @endforeach
+      </nav>
+      {{-- Image pour les planètes --}}
+      <div class="flex justify-center mb-10">
+        <img src="{{ asset('images/destinations/' . $planet . '.png') }}" alt="{{ $data['name'] }}"
+          class="w-40 md:w-64 lg:w-80 object-contain drop-shadow-xl">
       </div>
 
-      {{-- Points de navigation --}}
-      <div class="flex items-center justify-center gap-3">
-        @foreach ($planets as $i => $p)
-          <button type="button"
-            class="planet-dot h-3 w-3 rounded-full {{ $i === 0 ? 'bg-white' : 'bg-white/30 hover:bg-white/60' }}"
-            aria-label="@lang('Aller à la planète') {{ $i + 1 }}" aria-controls="planet-slider"
-            data-goto="{{ $i }}"></button>
-        @endforeach
+
+      {{-- Infos planète --}}
+      <h2 class="text-4xl md:text-6xl font-bold uppercase mb-6">{{ $data['name'] }}</h2>
+      <p class="text-gray-200 max-w-xl mx-auto md:mx-0 mb-10">{{ $data['description'] }}</p>
+
+      <div class="flex flex-col md:flex-row justify-center md:justify-start gap-10 border-t border-gray-600 pt-6">
+        <div>
+          <p class="uppercase text-gray-400 text-sm mb-2">Distance</p>
+          <p class="text-2xl font-bold">{{ $data['distance'] }}</p>
+        </div>
+        <div>
+          <p class="uppercase text-gray-400 text-sm mb-2">Durée</p>
+          <p class="text-2xl font-bold">{{ $data['travel'] }}</p>
+        </div>
       </div>
     </div>
   </section>
-
-  {{-- Script slider --}}
-  <script>
-    (function () {
-      const slides = Array.from(document.querySelectorAll('.planet-slide'));
-      const dots = Array.from(document.querySelectorAll('.planet-dot'));
-
-      function showSlide(index) {
-        slides.forEach((s, i) => {
-          const active = i === index;
-          s.classList.toggle('hidden', !active);
-          s.setAttribute('aria-hidden', active ? 'false' : 'true');
-        });
-
-        dots.forEach((d, i) => {
-          d.classList.toggle('bg-white', i === index);
-          d.classList.toggle('bg-white/30', i !== index);
-        });
-      }
-
-      dots.forEach(d => {
-        d.addEventListener('click', () => showSlide(parseInt(d.dataset.goto, 10)));
-      });
-
-      showSlide(0);
-    })();
-  </script>
 @endsection
