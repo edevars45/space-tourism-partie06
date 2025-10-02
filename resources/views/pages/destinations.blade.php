@@ -6,7 +6,7 @@
 @section('content')
   {{-- Section avec image de fond --}}
   <section class="relative min-h-[calc(100vh-140px)] bg-cover bg-center"
-         style="background-image: url('{{ asset('images/technology/background-stars.jpg') }}');">
+    style="background-image: url('{{ asset('images/technology/background-stars.jpg') }}');">
     {{-- Overlay sombre --}}
     <div class="absolute inset-0 bg-black/50"></div>
 
@@ -18,47 +18,41 @@
         {{ __('destinations.heading') }}
       </h1>
 
-   @php
-  $planets = [
-    ['key' => 'moon',   'img' => asset('images/destinations/moon.png')],
-    ['key' => 'mars',   'img' => asset('images/destinations/mars.png')],
-    ['key' => 'europa', 'img' => asset('images/destinations/europa.png')],
-    ['key' => 'titan',  'img' => asset('images/destinations/titan.png')],
-  ];
-@endphp
+      @php
+        $planets = [
+          ['key' => 'moon', 'img' => asset('images/destinations/moon.png')],
+          ['key' => 'mars', 'img' => asset('images/destinations/mars.png')],
+          ['key' => 'europa', 'img' => asset('images/destinations/europa.png')],
+          ['key' => 'titan', 'img' => asset('images/destinations/titan.png')],
+        ];
+      @endphp
 
       {{-- SLIDER --}}
       <div id="planet-slider" class="relative">
         @foreach ($planets as $i => $p)
           @php $key = $p['key']; @endphp
-          <article
-            class="planet-slide grid md:grid-cols-2 gap-10 items-center mb-12 {{ $i === 0 ? '' : 'hidden' }}"
-            data-index="{{ $i }}"
-            aria-hidden="{{ $i === 0 ? 'false' : 'true' }}"
-          >
+          <article class="planet-slide grid md:grid-cols-2 gap-10 items-center mb-12 {{ $i === 0 ? '' : 'hidden' }}"
+            data-index="{{ $i }}" aria-hidden="{{ $i === 0 ? 'false' : 'true' }}">
             {{-- Image --}}
             <div class="order-1 flex justify-center">
-              <img
-                src="{{ $p['img'] }}"
-                alt="{{ __('destinations.'.$key.'.alt') }}"
-                class="w-60 md:w-80 object-contain drop-shadow-xl"
-                loading="lazy"
-              >
+              <img src="{{ $p['img'] }}" alt="{{ __('destinations.' . $key . '.alt') }}"
+                class="w-60 md:w-80 object-contain drop-shadow-xl" loading="lazy">
             </div>
 
             {{-- Texte --}}
             <div class="order-2 text-white">
               <h2 class="text-2xl md:text-3xl font-semibold mb-4 uppercase">
-                {{ __('destinations.'.$key.'.name') }}
+                {{ __('destinations.' . $key . '.name') }}
               </h2>
               <p class="text-gray-200 mb-4 leading-relaxed">
-                {{ __('destinations.'.$key.'.description') }}
+                {{ __('destinations.' . $key . '.description') }}
               </p>
               <p class="text-sm text-gray-300">
-                <strong>{{ __('destinations.distance') }} :</strong> {{ __('destinations.'.$key.'.distance') }}
+                <strong>{{ __('destinations.' . $key . '.distance') }}</strong>
                 <br>
-                <strong>{{ __('destinations.travel') }} :</strong> {{ __('destinations.'.$key.'.travel') }}
+                <strong>{{ __('destinations.' . $key . '.travel') }}</strong>
               </p>
+
             </div>
           </article>
         @endforeach
@@ -67,13 +61,10 @@
       {{-- Points de navigation --}}
       <div class="flex items-center justify-center gap-3">
         @foreach ($planets as $i => $p)
-          <button
-            type="button"
-            class="planet-dot h-3 w-3 rounded-full {{ $i===0 ? 'bg-white' : 'bg-white/30 hover:bg-white/60' }}"
-            aria-label="@lang('Aller à la planète') {{ $i + 1 }}"
-            aria-controls="planet-slider"
-            data-goto="{{ $i }}"
-          ></button>
+          <button type="button"
+            class="planet-dot h-3 w-3 rounded-full {{ $i === 0 ? 'bg-white' : 'bg-white/30 hover:bg-white/60' }}"
+            aria-label="@lang('Aller à la planète') {{ $i + 1 }}" aria-controls="planet-slider"
+            data-goto="{{ $i }}"></button>
         @endforeach
       </div>
     </div>
@@ -83,7 +74,7 @@
   <script>
     (function () {
       const slides = Array.from(document.querySelectorAll('.planet-slide'));
-      const dots   = Array.from(document.querySelectorAll('.planet-dot'));
+      const dots = Array.from(document.querySelectorAll('.planet-dot'));
 
       function showSlide(index) {
         slides.forEach((s, i) => {

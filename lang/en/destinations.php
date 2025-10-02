@@ -1,37 +1,46 @@
 <?php
-return [
-    'title'   => 'Destinations',
-    'heading' => 'Pick your destination',
 
-    'distance' => 'Distance',
-    'travel'   => 'Travel time',
+return [
+    'title' => 'Destinations',
+    'heading' => 'PICK YOUR DESTINATION',
 
     'moon' => [
-        'name' => 'Moon',
-        'description' => 'Our natural satellite, the first step to the stars.',
-        'distance' => '384,400 km',
-        'travel' => '3 days',
+        'name' => 'MOON',
+        'description' => 'See our planet as you’ve never seen it before.
+                          A perfect relaxing trip to help you unwind and come back refreshed.
+                          While you’re there, visit famous lunar landmarks.',
+        'distance' => '384,400 miles',
+        'travel' => '3 DAYS',
         'alt' => 'Image of the Moon',
     ],
+
     'mars' => [
-        'name' => 'Mars',
-        'description' => 'The red planet, a potential new home for humanity.',
-        'distance' => '225 million km',
-        'travel' => '9 months',
+        'name' => 'MARS',
+        'description' => 'Don’t forget to pack your hiking boots.
+                          You’ll find the tallest mountains in the solar system here.
+                          The perfect adventure for thrill-seekers.',
+        'distance' => '225 MIL. miles',
+        'travel' => '9 MONTHS',
         'alt' => 'Image of Mars',
     ],
+
     'europa' => [
-        'name' => 'Europa',
-        'description' => 'One of Jupiter’s moons, covered in mysterious ice.',
-        'distance' => '628 million km',
-        'travel' => '6 years',
+        'name' => 'EUROPA',
+        'description' => 'The smallest of the four Galilean moons of Jupiter,
+                          Europa is the ideal destination for water lovers.
+                          An underground ocean awaits explorers.',
+        'distance' => '628 MIL. miles',
+        'travel' => '3 YEARS',
         'alt' => 'Image of Europa',
     ],
+
     'titan' => [
-        'name' => 'Titan',
-        'description' => 'Saturn’s largest moon, with a thick atmosphere.',
-        'distance' => '1.6 billion miles',
-        'travel' => '7 years',
+        'name' => 'TITAN',
+        'description' => 'The only moon known to have a dense atmosphere other than Earth,
+                          Titan is a fascinating world with lakes of methane.
+                          A one-of-a-kind experience for adventurous travelers.',
+        'distance' => '1.6 BIL. miles',
+        'travel' => '7 YEARS',
         'alt' => 'Image of Titan',
     ],
 ];

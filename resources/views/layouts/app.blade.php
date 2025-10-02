@@ -15,7 +15,7 @@
   {{-- HEADER GLOBAL --}}
   {{-- ====================== --}}
   <x-header />
-  {{-- ⚡ Ici on appelle ton composant header.blade.php --}}
+  {{--  Ici on appelle le composant header.blade.php --}}
 
   {{-- ====================== --}}
   {{-- CONTENU PRINCIPAL --}}
