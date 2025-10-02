@@ -1,32 +1,37 @@
 <?php
 return [
     'title'   => 'Destinations',
-    'heading' => '01 DESTINATIONS SPATIALES',
-    'subtitle'=> 'Choisissez votre destination et préparez le décollage.',
-    'distance'=> 'Distance :',
-    'duration'=> 'Durée :',
+    'heading' => 'Choisissez votre destination',
+
+    'distance' => 'Distance',
+    'travel'   => 'Durée du voyage',
 
     'moon' => [
-        'name' => 'La Lune',
-        'alt'  => 'Lune',
-        'description' => "Notre satellite naturel et la première destination historique de l’exploration spatiale.",
+        'name' => 'Lune',
+        'description' => 'Notre satellite naturel, le premier pas vers les étoiles.',
+        'distance' => '384 400 km',
+        'travel' => '3 jours',
+        'alt' => 'Image de la Lune',
     ],
-
     'mars' => [
         'name' => 'Mars',
-        'alt'  => 'Mars',
-        'description' => "La planète rouge, objectif majeur des futures missions habitées.",
+        'description' => 'La planète rouge, un nouveau foyer pour l’humanité.',
+        'distance' => '225 millions km',
+        'travel' => '9 mois',
+        'alt' => 'Image de Mars',
     ],
-
     'europa' => [
-        'name' => 'Europa',
-        'alt'  => "Europa (lune de Jupiter)",
-        'description' => "Lune glacée de Jupiter, célèbre pour son océan souterrain potentiellement habitable.",
+        'name' => 'Europe',
+        'description' => 'L’une des lunes de Jupiter, recouverte de glace mystérieuse.',
+        'distance' => '628 millions km',
+        'travel' => '6 ans',
+        'alt' => 'Image d’Europe',
     ],
-
     'titan' => [
         'name' => 'Titan',
-        'alt'  => "Titan (lune de Saturne)",
-        'description' => "Lune brumeuse de Saturne, à l’atmosphère dense et aux mers d’hydrocarbures.",
+        'description' => 'La plus grande lune de Saturne, avec une atmosphère dense.',
+        'distance' => '1,6 milliard km',
+        'travel' => '7 ans',
+        'alt' => 'Image de Titan',
     ],
 ];

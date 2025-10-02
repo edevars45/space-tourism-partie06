@@ -1,15 +1,15 @@
 {{-- resources/views/components/footer.blade.php --}}
-<footer role="contentinfo" class="bg-black/80 backdrop-blur border-t border-gray-700 mt-8">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 text-gray-400 text-sm flex flex-col sm:flex-row items-center justify-between gap-4">
+<footer role="contentinfo" class="bg-black/80 text-gray-400 text-sm py-6 mt-12 border-t border-gray-700">
+  <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row justify-between items-center gap-4">
 
-    {{-- Logo + texte --}}
+    {{-- Logo --}}
     <div class="flex items-center gap-2">
-      <img src="{{ asset('assets/logo.jpg') }}" alt="Space Tourism" class="h-6 w-auto">
+      <img src="{{ asset('assets/logo.png') }}" alt="Space Tourism" class="h-6 w-auto">
       <span class="font-semibold text-white">Space Tourism</span>
     </div>
 
-    {{-- Liens du footer --}}
-    <nav aria-label="Navigation pied de page" class="flex items-center gap-4">
+    {{-- Liens de navigation --}}
+    <nav class="flex gap-4" aria-label="{{ __('nav.lang_selector_label') }}">
       <a href="{{ route('home') }}" class="hover:underline">{{ __('nav.home') }}</a>
       <a href="{{ route('destinations') }}" class="hover:underline">{{ __('nav.destinations') }}</a>
       <a href="{{ route('crew') }}" class="hover:underline">{{ __('nav.crew') }}</a>
@@ -17,6 +17,6 @@
     </nav>
 
     {{-- Copyright --}}
-    <p class="text-gray-500">&copy; {{ date('Y') }} Space Tourism. All rights reserved.</p>
+    <p>&copy; {{ date('Y') }} Space Tourism</p>
   </div>
 </footer>

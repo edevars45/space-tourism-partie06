@@ -1,32 +1,37 @@
 <?php
 return [
     'title'   => 'Destinations',
-    'heading' => '01 SPACE DESTINATIONS',
-    'subtitle'=> 'Choose your destination and get ready for launch.',
-    'distance'=> 'Distance:',
-    'duration'=> 'Duration:',
+    'heading' => 'Pick your destination',
+
+    'distance' => 'Distance',
+    'travel'   => 'Travel time',
 
     'moon' => [
         'name' => 'Moon',
-        'alt'  => 'Moon',
-        'description' => 'Our natural satellite and the first historic destination of space exploration.',
+        'description' => 'Our natural satellite, the first step to the stars.',
+        'distance' => '384,400 km',
+        'travel' => '3 days',
+        'alt' => 'Image of the Moon',
     ],
-
     'mars' => [
         'name' => 'Mars',
-        'alt'  => 'Mars',
-        'description' => 'The red planet, a prime target for future crewed missions.',
+        'description' => 'The red planet, a potential new home for humanity.',
+        'distance' => '225 million km',
+        'travel' => '9 months',
+        'alt' => 'Image of Mars',
     ],
-
     'europa' => [
         'name' => 'Europa',
-        'alt'  => 'Europa (moon of Jupiter)',
-        'description' => 'Icy moon of Jupiter, famous for its subsurface ocean that may host life.',
+        'description' => 'One of Jupiter’s moons, covered in mysterious ice.',
+        'distance' => '628 million km',
+        'travel' => '6 years',
+        'alt' => 'Image of Europa',
     ],
-
     'titan' => [
         'name' => 'Titan',
-        'alt'  => 'Titan (moon of Saturn)',
-        'description' => 'Saturn’s hazy moon with a dense atmosphere and seas of hydrocarbons.',
+        'description' => 'Saturn’s largest moon, with a thick atmosphere.',
+        'distance' => '1.6 billion miles',
+        'travel' => '7 years',
+        'alt' => 'Image of Titan',
     ],
 ];
