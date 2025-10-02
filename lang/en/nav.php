@@ -1,8 +1,7 @@
 <?php
 return [
-  'home' => 'Home',
-  'destinations' => 'Destinations',
-  'crew' => 'Crew',
-  'technology' => 'Technology',
-  'lang_selector_label' => 'Language selector',
+    'home'        => '00 HOME',
+    'destinations'=> '01 DESTINATION',
+    'crew'        => '02 CREW',
+    'technology'  => '03 TECHNOLOGY',
 ];
