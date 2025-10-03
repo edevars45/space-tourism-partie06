@@ -4,15 +4,16 @@
 return [
     // Titre de la page (balise <title>)
     'title' => 'Équipage',
+
     // Grand titre affiché en haut de la page
-    'heading' => 'Rencontrez notre équipage',
+    'heading' => 'RENCONTREZ L’ÉQUIPAGE',
 
     // Commandant
     'commander' => [
-        'name' => 'Douglas Hurley', // Nom affiché
-        'role' => 'Commandant', // Fonction
-        'bio'  => "Pilote d’essai et astronaute chevronné, il a commandé plusieurs missions et gère les opérations critiques.", // Description courte
-        'alt'  => "Photo du commandant Douglas Hurley", // Texte alternatif pour l’image
+        'name' => 'Douglas Hurley',
+        'role' => 'Commandant',
+        'bio'  => "Pilote d’essai et astronaute chevronné, il a commandé plusieurs missions et gère les opérations critiques.",
+        'alt'  => "Photo du commandant Douglas Hurley",
     ],
 
     // Ingénieure
@@ -34,11 +35,11 @@ return [
     // Spécialiste
     'specialist' => [
         'name' => 'Mark Shuttleworth',
-        'role' => 'Spécialiste mission',
+        'role' => 'Spécialiste de mission',
         'bio'  => "Responsable des expériences à bord et de l’analyse des données en temps réel.",
         'alt'  => "Photo du spécialiste Mark Shuttleworth",
     ],
-    // Libellé pour les boutons/puces d’accès aux membres (accessibilité)
-'goto_member' => 'Aller au membre',
-];
 
+    // Libellé pour les boutons/puces d’accès aux membres (accessibilité)
+    'goto_member' => 'Aller au membre',
+];

@@ -4,81 +4,81 @@
 
 @section('content')
 <section class="min-h-screen bg-cover bg-center relative"
-    style="background-image: url('{{ asset('images/background-stars.jpg') }}');">
+  style="background-image: url('{{ asset('images/background-stars.jpg') }}');">
 
   {{-- Overlay sombre --}}
   <div class="absolute inset-0 bg-black/40"></div>
 
-  <div class="relative z-10 max-w-6xl mx-auto px-6 py-12">
+  <div class="relative z-10 max-w-6xl mx-auto px-6 py-16">
+    {{-- Titre --}}
+    <h1
+      class="font-barlow-condensed uppercase text-center md:text-left mb-12 tracking-[0.25em] text-sm md:text-lg text-gray-300">
+      <span class="font-bold text-white/70 mr-3">03</span>
+      {{ __('technology.heading') }}
+    </h1>
+
     @php
       $techs = [
-        [
-          'title' => 'LE LANCEUR',
-          'desc'  => "Un lanceur est un véhicule propulsé par fusée utilisé pour transporter une charge utile dans l’espace. Notre fusée WEB-X est la plus puissante en service. Debout à 150m, elle offre un spectacle impressionnant.",
-          'img'   => asset('images/technology/launch-vehicle.jpg'),
-        ],
-        [
-          'title' => 'L’ESPACEPORT',
-          'desc'  => "L’espaceport est une installation moderne conçue pour accueillir les équipages, préparer les fusées et assurer des missions spatiales dans les meilleures conditions.",
-          'img'   => asset('images/technology/spaceport.jpg'),
-        ],
-        [
-          'title' => 'LA CAPSULE SPATIALE',
-          'desc'  => "La capsule spatiale est l’endroit où vit et travaille l’équipage. Confort, sécurité et technologies de pointe pour survivre et communiquer dans l’espace.",
-          'img'   => asset('images/technology/space-capsule.jpg'),
-        ],
+        ['key' => 'launch', 'img' => asset('images/technology/launch-vehicle.jpg')],
+        ['key' => 'spaceport', 'img' => asset('images/technology/spaceport.jpg')],
+        ['key' => 'capsule', 'img' => asset('images/technology/space-capsule.jpg')],
       ];
     @endphp
 
     @foreach ($techs as $i => $t)
-    <article
-      class="tech-slide {{ $i === 0 ? '' : 'hidden' }} grid md:grid-cols-2 gap-12 items-center min-h-[80vh]"
-      data-index="{{ $i }}">
+      <article
+        class="tech-slide {{ $i === 0 ? '' : 'hidden' }} grid md:grid-cols-2 gap-12 items-center min-h-[80vh]"
+        data-index="{{ $i }}">
 
-      {{-- Colonne gauche = boutons + texte --}}
-      <div class="flex flex-col md:flex-row items-center md:items-start gap-12">
+        {{-- Colonne gauche = boutons + texte --}}
+        <div class="flex flex-col md:flex-row items-center md:items-start gap-12">
 
-        {{-- Boutons ronds --}}
-        <div class="flex md:flex-col gap-4 justify-center">
-          @foreach (['0','1','2'] as $j)
-            <button type="button"
-              class="tech-dot h-12 w-12 rounded-full border-2 border-white flex items-center justify-center font-bold text-lg transition
-              {{ $j == $i
-                  ? 'bg-white text-black'
-                  : 'bg-transparent text-white hover:bg-white/20 hover:scale-110' }}"
-              data-goto="{{ $j }}">
-              {{ $j+1 }}
-            </button>
-          @endforeach
+          {{-- Boutons ronds --}}
+          <div class="flex md:flex-col gap-4 justify-center">
+            @foreach ($techs as $j => $tech)
+              <button type="button"
+                class="tech-dot h-12 w-12 rounded-full border-2 border-white flex items-center justify-center font-bold text-lg transition
+                {{ $j == $i ? 'bg-white text-black' : 'bg-transparent text-white hover:bg-white/20 hover:scale-110' }}"
+                data-goto="{{ $j }}"
+                aria-label="{{ __('technology.goto_tech') }} {{ $j+1 }}">
+                {{ $j+1 }}
+              </button>
+            @endforeach
+          </div>
+
+          {{-- Texte --}}
+          <div class="text-center md:text-left flex flex-col justify-center">
+            <p class="uppercase font-barlow-condensed tracking-widest text-gray-400 mb-2">
+              {{ __('technology.'.$t['key'].'.terminology') }}
+            </p>
+            <h2 class="text-3xl md:text-5xl font-bellefair uppercase mb-6">
+              {{ __('technology.'.$t['key'].'.title') }}
+            </h2>
+            <p class="text-gray-200 leading-relaxed max-w-xl font-barlow">
+              {{ __('technology.'.$t['key'].'.desc') }}
+            </p>
+          </div>
         </div>
 
-        {{-- Texte --}}
-        <div class="text-center md:text-left flex flex-col justify-center">
-          <p class="uppercase tracking-widest text-gray-400 mb-2">La terminologie…</p>
-          <h2 class="text-3xl md:text-5xl font-bold text-white mb-6">{{ $t['title'] }}</h2>
-          <p class="text-gray-200 leading-relaxed max-w-xl">{{ $t['desc'] }}</p>
+        {{-- Colonne droite = image --}}
+        <div class="flex justify-center md:justify-end">
+          <img src="{{ $t['img'] }}" alt="{{ __('technology.'.$t['key'].'.title') }}"
+            class="w-72 md:w-96 lg:w-[500px] object-contain">
         </div>
-      </div>
-
-      {{-- Colonne droite = image --}}
-      <div class="flex justify-center md:justify-end">
-        <img src="{{ $t['img'] }}" alt="{{ $t['title'] }}"
-             class="w-72 md:w-96 lg:w-[500px] object-contain">
-      </div>
-    </article>
+      </article>
     @endforeach
   </div>
 </section>
 
 {{-- Script slider --}}
 <script>
-(function() {
+(function () {
   const slides = document.querySelectorAll('.tech-slide');
-  const dots   = document.querySelectorAll('.tech-dot');
+  const dots = document.querySelectorAll('.tech-dot');
 
   function showSlide(index) {
-    slides.forEach((s,i) => s.classList.toggle('hidden', i !== index));
-    dots.forEach((d,i) => {
+    slides.forEach((s, i) => s.classList.toggle('hidden', i !== index));
+    dots.forEach((d, i) => {
       d.classList.toggle('bg-white', i === index);
       d.classList.toggle('text-black', i === index);
       d.classList.toggle('bg-transparent', i !== index);
@@ -86,7 +86,7 @@
     });
   }
 
-  dots.forEach(d => d.addEventListener('click', () => showSlide(parseInt(d.dataset.goto,10))));
+  dots.forEach(d => d.addEventListener('click', () => showSlide(parseInt(d.dataset.goto, 10))));
   showSlide(0);
 })();
 </script>

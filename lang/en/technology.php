@@ -1,31 +1,33 @@
 <?php
+// Texts for the Technology page (English version)
 
 return [
-    'title' => 'Technology',
-    'heading' => 'SPACE LAUNCH 101',
-    'terminology' => 'THE TERMINOLOGY...',
+    // Page title
+    'title'   => 'Technology',
+    // Main heading
+    'heading' => 'SPACE LAUNCH TECHNOLOGY',
 
-    'capsule' => [
-        'name' => 'Space Capsule',
-        'description' => 'A modern spacecraft designed to safely transport the crew
-                          from Earth’s surface into orbit and beyond.
-                          The capsule provides a protected habitable space and a safe reentry to Earth.',
-        'alt' => 'Image of the space capsule',
+    // Launch Vehicle
+    'launch' => [
+        'terminology' => 'The terminology…',
+        'title' => 'LAUNCH VEHICLE',
+        'desc'  => "A launch vehicle is a rocket-propelled vehicle used to carry a payload into space.
+                    Our WEB-X rocket is the most powerful in service. Standing 150m tall, it’s an impressive sight.",
     ],
 
-    'launcher' => [
-        'name' => 'Launch Vehicle',
-        'description' => 'A launch vehicle or carrier rocket is a rocket-propelled vehicle
-                          used to carry a payload from Earth’s surface to space,
-                          usually to Earth orbit or beyond.
-                          Our WEB-X rocket is the most powerful in operation.',
-        'alt' => 'Image of the launch vehicle',
-    ],
-
+    // Spaceport
     'spaceport' => [
-        'name' => 'Spaceport',
-        'description' => 'A spaceport or cosmodrome functions as the launch and landing base for spacecraft.
-                          Think of it like an airport, but designed for interstellar travel.',
-        'alt' => 'Image of the spaceport',
+        'terminology' => 'The terminology…',
+        'title' => 'SPACEPORT',
+        'desc'  => "A spaceport is a modern facility designed to host crews, prepare rockets,
+                    and ensure missions under optimal conditions.",
+    ],
+
+    // Space Capsule
+    'capsule' => [
+        'terminology' => 'The terminology…',
+        'title' => 'SPACE CAPSULE',
+        'desc'  => "The space capsule is the living and working area for the crew.
+                    Comfort, safety, and cutting-edge technology to survive and communicate in space.",
     ],
 ];

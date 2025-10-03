@@ -5,6 +5,9 @@
   <meta charset="utf-8">
   <title>@yield('title', 'Space Tourism')</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;700&family=Barlow+Condensed:wght@400;700&family=Bellefair&display=swap" rel="stylesheet">
+
+
 
   {{-- Import Tailwind + JS --}}
   @vite(['resources/css/app.css', 'resources/js/app.js'])

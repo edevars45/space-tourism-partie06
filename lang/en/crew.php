@@ -1,20 +1,19 @@
 <?php
+// Texts for the Crew page (English version)
 
 return [
-  // Libellé pour les boutons/puces d’accès aux membres (accessibilité)
-'goto_member' => 'Aller au membre',
-
     // Page title (<title>)
     'title' => 'Crew',
-    // Main heading at the top of the page
-    'heading' => 'Meet our crew',
+
+    // Main heading displayed at the top
+    'heading' => 'MEET OUR CREW',
 
     // Commander
     'commander' => [
-        'name' => 'Douglas Hurley', // Displayed name
-        'role' => 'Commander', // Role
-        'bio'  => "Test pilot and seasoned astronaut, he has led multiple missions and manages critical operations.", // Short bio
-        'alt'  => "Photo of Commander Douglas Hurley", // Alt text for image
+        'name' => 'Douglas Hurley',
+        'role' => 'Commander',
+        'bio'  => "Test pilot and seasoned astronaut, he has led multiple missions and manages critical operations.",
+        'alt'  => "Photo of Commander Douglas Hurley",
     ],
 
     // Engineer
@@ -40,4 +39,7 @@ return [
         'bio'  => "Responsible for onboard experiments and real-time data analysis.",
         'alt'  => "Photo of Mission Specialist Mark Shuttleworth",
     ],
+
+    // Label for accessibility (dots navigation)
+    'goto_member' => 'Go to member',
 ];
