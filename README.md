@@ -46,92 +46,80 @@ Cette quatrième partie du projet se concentre sur :
 
 ## Structure du projet
 
+```bash
 app/
 ├── Http/
-│ ├── Controllers/
-│ ├── Middleware/
-│ │ └── SetLocale.php
-│ └── Requests/
+│   ├── Controllers/
+│   ├── Middleware/
+│   │   └── SetLocale.php
+│   └── Requests/
 ├── Models/
 └── Providers/
 
 resources/
 ├── lang/
-│ ├── en/
-│ └── fr/
+│   ├── en/
+│   └── fr/
 └── views/
-├── layouts/
-├── pages/
-└── components/
+    ├── layouts/
+    ├── pages/
+    └── components/
 
 routes/
 ├── web.php
 └── auth.php
+Installation du projet
+Cloner le dépôt GitHub
 
----
-
-## Installation du projet
-
-1. **Cloner le dépôt GitHub**
-   ```bash
-   git clone https://github.com/edevars45/space-tourism-partie04.git
-   cd space-tourism-partie04
+bash
+Copier le code
+git clone https://github.com/edevars45/space-tourism-partie04.git
+cd space-tourism-partie04
 Installer les dépendances
 
+bash
+Copier le code
 composer install
 npm install
-
-
 Créer le fichier d’environnement
 
+bash
+Copier le code
 cp .env.example .env
-
-
-Configurer la base de données si nécessaire dans le fichier .env.
+Configurer la base de données dans le fichier .env (si nécessaire).
 
 Générer la clé d’application
 
+bash
+Copier le code
 php artisan key:generate
-
-
 Lancer le serveur local
 
+bash
+Copier le code
 php artisan serve
-
-
-Accéder à l’application :
+Accéder à l’application
 http://127.0.0.1:8000
 
 Changement de langue
-
 Le changement de langue s’effectue via les boutons FR et EN situés dans la barre de navigation.
 Le middleware SetLocale stocke la préférence de langue dans la session utilisateur.
 
 Extrait du code :
 
+php
+Copier le code
 // app/Http/Middleware/SetLocale.php
 $locale = Session::get('locale', config('app.locale', 'en'));
 App::setLocale($locale);
+Fichiers de traduction :
 
-
-Les fichiers de traduction sont situés dans :
-
+bash
+Copier le code
 resources/lang/en/
 resources/lang/fr/
-
-Captures d’écran
-
-Accueil
-
-Équipage
-
-Destinations
-
-Technologies
-
 Historique des versions
 Partie 01 – Base du projet
-
 Installation de Laravel Breeze.
 
 Création de la page d’accueil et de la structure initiale.
@@ -139,7 +127,6 @@ Création de la page d’accueil et de la structure initiale.
 Mise en place du design général avec TailwindCSS.
 
 Partie 02 – Section Destinations
-
 Création du contrôleur DestinationsController.
 
 Gestion dynamique des destinations (Lune, Mars, Europe, Titan).
@@ -147,7 +134,6 @@ Gestion dynamique des destinations (Lune, Mars, Europe, Titan).
 Affichage du contenu traduit selon la langue active.
 
 Partie 03 – Section Crew
-
 Ajout de la page Équipage avec un système de slider.
 
 Gestion des rôles, noms et biographies des membres d’équipage.
@@ -155,7 +141,6 @@ Gestion des rôles, noms et biographies des membres d’équipage.
 Optimisation des images et du design responsive.
 
 Partie 04 – Section Technologies et Multilingue
-
 Création de la page Technologies avec boutons dynamiques.
 
 Intégration complète du multilingue (FR/EN).
@@ -165,23 +150,18 @@ Ajout du middleware SetLocale.
 Amélioration de la navigation et du responsive design.
 
 Auteur
-
 Développé par Edevars
 Projet de formation – Laravel & TailwindCSS
 Partie 04 : Navigation, Multilingue et Technologies spatiales
 
 Licence
-
 Projet réalisé à des fins pédagogiques.
 Libre d’utilisation pour l’apprentissage et la démonstration technique.
 
-Commandes Git utiles
-git add .
-git commit -m "Finalisation du projet Space Tourism - Partie 04 avec multilingue et navigation complète"
+
+
+
+```bash
+git add README.md
+git commit -m "Version finale du README propre et formatée"
 git push origin main
-
-
----
-
- Ce fichier est **propre, bien structuré et prêt à être poussé** sur GitHub.
-Souhaites-tu que je te génère le fichier `README.md` téléchargeable directement (`.md` prêt à dépos
