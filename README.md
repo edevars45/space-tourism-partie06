@@ -1,62 +1,179 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+## Space Tourism - Partie 04
+### Description du projet
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Ce projet a été développé dans le cadre d’un apprentissage de Laravel et TailwindCSS.
+Il s’agit d’une application web inspirée du concept Space Tourism, permettant de découvrir différentes destinations, membres d’équipage et technologies liées à l’exploration spatiale.
 
-## About Laravel
+Cette quatrième partie du projet se concentre sur :
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+La gestion de la navigation complète entre les pages.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+L’ajout du multilingue (français / anglais).
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+L’intégration de la page des technologies.
 
-## Learning Laravel
+Le perfectionnement du design responsive (desktop, tablette, mobile).
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Objectifs pédagogiques
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+Appliquer les principes du framework Laravel 11.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Comprendre et utiliser le système de routes et de middleware.
 
-## Laravel Sponsors
+Mettre en place un système multilingue (i18n) avec resources/lang.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+Créer une interface responsive à l’aide de TailwindCSS.
 
-### Premium Partners
+Gérer la navigation dynamique entre les différentes sections du site.
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+Technologies utilisées
 
-## Contributing
+Laravel 11 – Framework PHP.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Tailwind CSS – Mise en page moderne et responsive.
 
-## Code of Conduct
+Blade – Moteur de templates Laravel.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+JavaScript – Gestion des sliders et des interactions.
 
-## Security Vulnerabilities
+Laravel Breeze – Authentification et gestion des utilisateurs.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+i18n Laravel – Système multilingue (fr / en).
 
-## License
+Fonctionnalités principales
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
-"# space-tourism-partie04" 
+Navigation entre les pages : Accueil, Équipage, Destinations, Technologies.
+
+Gestion des langues (Français / Anglais) avec middleware SetLocale.
+
+Affichage dynamique des membres d’équipage et des technologies spatiales.
+
+Pages responsives (mobile, tablette, desktop).
+
+Système d’authentification utilisateur via Laravel Breeze.
+
+Structure du projet
+app/
+ ├── Http/
+ │   ├── Controllers/
+ │   ├── Middleware/
+ │   │   └── SetLocale.php
+ │   └── Requests/
+ ├── Models/
+ └── Providers/
+
+resources/
+ ├── lang/
+ │   ├── en/
+ │   └── fr/
+ └── views/
+     ├── layouts/
+     ├── pages/
+     └── components/
+
+routes/
+ ├── web.php
+ └── auth.php
+
+Installation du projet
+1. Cloner le dépôt GitHub
+git clone https://github.com/edevars45/space-tourism-partie04.git
+cd space-tourism-partie04
+
+2. Installer les dépendances
+composer install
+npm install
+
+3. Créer le fichier .env
+cp .env.example .env
+
+
+Configurer les paramètres de connexion à la base de données si nécessaire.
+
+4. Générer la clé d’application
+php artisan key:generate
+
+5. Lancer le serveur de développement
+php artisan serve
+
+
+Accéder à l’application :
+http://127.0.0.1:8000
+
+Changement de langue
+
+Le changement de langue s’effectue via les boutons FR et EN situés dans la barre de navigation.
+Le middleware SetLocale stocke la préférence de langue dans la session de l’utilisateur :
+
+// app/Http/Middleware/SetLocale.php
+$locale = Session::get('locale', config('app.locale', 'en'));
+App::setLocale($locale);
+
+
+Les fichiers de traduction se trouvent dans :
+
+resources/lang/en/
+resources/lang/fr/
+
+Captures d’écran
+Accueil
+
+Équipage
+
+Destinations
+
+Technologies
+
+Historique des versions
+Partie 01 – Base du projet
+
+Installation de Laravel Breeze.
+
+Création de la page d’accueil et de la structure initiale.
+
+Mise en place du design général avec TailwindCSS.
+
+Partie 02 – Section Destinations
+
+Création du contrôleur DestinationsController.
+
+Gestion dynamique des destinations (Lune, Mars, Europe, Titan).
+
+Affichage du contenu traduit selon la langue active.
+
+Partie 03 – Section Crew
+
+Ajout de la page Équipage avec un système de slider.
+
+Gestion des rôles, noms et biographies des membres d’équipage.
+
+Optimisation des images et du design responsive.
+
+Partie 04 – Section Technologies et Multilingue
+
+Création de la page Technologies avec boutons dynamiques.
+
+Intégration complète du multilingue (FR/EN).
+
+Ajout du middleware SetLocale.
+
+Amélioration de la navigation et du responsive design.
+
+Auteur
+
+Développé par Edevars
+Projet de formation – Laravel & TailwindCSS
+Partie 04 : Navigation, Multilingue et Technologies spatiales
+
+Licence
+
+Projet réalisé à des fins pédagogiques.
+Libre d’utilisation pour l’apprentissage et la démonstration technique.
+
+Commandes Git pour publier le projet
+
+Si tu veux pousser les dernières modifications sur GitHub :
+
+git add .
+git commit -m "Finalisation du projet Space Tourism - Partie 04 avec multilingue et navigation complète"
+git push origin main
