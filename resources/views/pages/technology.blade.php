@@ -3,8 +3,10 @@
 @section('title', __('technology.title'))
 
 @section('content')
-<section class="min-h-screen bg-cover bg-center relative"
-  style="background-image: url('{{ asset('images/background-stars.jpg') }}');">
+<section class="min-h-screen bg-no-repeat bg-cover bg-center relative
+  bg-[url('{{ asset('images/technology/background-technology-mobile.jpg') }}')]
+  md:bg-[url('{{ asset('images/technology/background-technology-tablet.jpg') }}')]
+  lg:bg-[url('{{ asset('images/technology/background-technology-desktop.jpg') }}')]">
 
   {{-- Overlay sombre --}}
   <div class="absolute inset-0 bg-black/40"></div>

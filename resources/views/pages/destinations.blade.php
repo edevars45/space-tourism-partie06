@@ -58,5 +58,13 @@
       </div>
     </div>
   </div>
+
+  // {{--Retour à l'acceuil--}}
+  <div class="text-center mt-12">
+    <a href="{{ route('dashboard') }}"
+       class="inline-block bg-white text-black font-barlow-condensed uppercase tracking-widest px-8 py-3 rounded-full hover:bg-gray-200 transition">
+       Retour à l’accueil
+    </a>
+</div>
 </section>
 @endsection

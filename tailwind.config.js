@@ -1,19 +1,21 @@
+import defaultTheme from 'tailwindcss/defaultTheme';
+import forms from '@tailwindcss/forms';
+
+/** @type {import('tailwindcss').Config} */
 export default {
-  theme: {
-    extend: {
-      fontFamily: {
-        barlow: ["Barlow", "sans-serif"],
-        "barlow-condensed": ['"Barlow Condensed"', "sans-serif"],
-        bellefair: ["Bellefair", "serif"],
-      },
-      backgroundImage: {
-        mobile: "url('/images/background-crew.jpg')",
-        home: "url('/images/background-home.jpg')",
-        destinations: "url('/images/background-destinations.jpg')",
-        crew: "url('/images/background-crew.jpg')",
-        technology: "url('/images/background-technology.jpg')",
-      },
+    content: [
+        './vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php',
+        './storage/framework/views/*.php',
+        './resources/views/**/*.blade.php',
+    ],
+
+    theme: {
+        extend: {
+            fontFamily: {
+                sans: ['Figtree', ...defaultTheme.fontFamily.sans],
+            },
+        },
     },
-  },
-  plugins: [],
+
+    plugins: [forms],
 };

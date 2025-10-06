@@ -1,39 +1,44 @@
-{{-- resources/views/layouts/app.blade.php --}}
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
-  <meta charset="utf-8">
-  <title>@yield('title', 'Space Tourism')</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;700&family=Barlow+Condensed:wght@400;700&family=Bellefair&display=swap" rel="stylesheet">
+    {{-- Définition du jeu de caractères --}}
+    <meta charset="utf-8">
 
+    {{-- Règle d’affichage responsive pour mobiles --}}
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    {{-- Jeton CSRF pour sécuriser les formulaires --}}
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
-  {{-- Import Tailwind + JS --}}
-  @vite(['resources/css/app.css', 'resources/js/app.js'])
+    {{-- Titre de la page (reprend le nom défini dans .env) --}}
+    <title>{{ config('app.name', 'Space Tourism') }}</title>
+
+    {{-- Chargement des polices (tu peux changer si besoin) --}}
+    <link rel="preconnect" href="https://fonts.bunny.net">
+    <link href="https://fonts.bunny.net/css?family=barlow:400,500,600|bellefair:400|barlow-condensed:400,500&display=swap" rel="stylesheet" />
+
+    {{-- Importation des fichiers CSS et JS compilés avec Vite --}}
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="bg-black text-white font-sans antialiased">
 
-  {{-- ====================== --}}
-  {{-- HEADER GLOBAL --}}
-  {{-- ====================== --}}
-  <x-header />
-  {{--  Ici on appelle le composant header.blade.php --}}
+<body class="font-sans antialiased bg-black text-white">
 
-  {{-- ====================== --}}
-  {{-- CONTENU PRINCIPAL --}}
-  {{-- ====================== --}}
-  <main class="min-h-screen pt-20">
-    {{-- pt-20 = padding en haut pour éviter que le header chevauche le contenu --}}
-    @yield('content')
-  </main>
+    {{-- Conteneur principal --}}
+    <div class="min-h-screen flex flex-col">
 
-  {{-- ====================== --}}
-  {{-- FOOTER GLOBAL --}}
-  {{-- ====================== --}}
-  <footer class="text-center py-6 text-sm opacity-70 border-t border-gray-700">
-    © 2025 Space Tourism
-  </footer>
+        {{-- Barre de navigation commune à toutes les pages --}}
+        @include('layouts.navigation')
+
+        {{-- Contenu principal injecté depuis chaque page --}}
+        <main class="flex-grow">
+            @yield('content')
+        </main>
+
+        {{-- Pied de page (facultatif) --}}
+        <footer class="bg-gray-900 text-gray-400 text-center py-6 text-sm">
+            © {{ date('Y') }} Space Tourism | Projet Laravel Breeze - Partie 04
+        </footer>
+    </div>
 
 </body>
 </html>
