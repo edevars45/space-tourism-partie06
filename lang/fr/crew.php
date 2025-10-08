@@ -1,45 +1,40 @@
 <?php
-// Textes de la page Équipage (version française)
-
+// ===========================================================
+// FR — Page Équipage (fallback i18n si BDD vide)
+// ===========================================================
 return [
-    // Titre de la page (balise <title>)
-    'title' => 'Équipage',
+    'title'       => 'Équipage',
+    'heading'     => 'Rencontrez l’équipage',
+    'goto_member' => 'Aller au membre de l’équipage',
 
-    // Grand titre affiché en haut de la page
-    'heading' => 'RENCONTREZ L’ÉQUIPAGE',
-
-    // Commandant
-    'commander' => [
-        'name' => 'Douglas Hurley',
-        'role' => 'Commandant',
-        'bio'  => "Pilote d’essai et astronaute chevronné, il a commandé plusieurs missions et gère les opérations critiques.",
-        'alt'  => "Photo du commandant Douglas Hurley",
+    'members' => [
+        'commander' => [
+            'name'  => 'Douglas Hurley',
+            'role'  => 'Commandant',
+            'bio'   => "Pilote d’essai et astronaute chevronné, il a commandé plusieurs missions et supervise les opérations critiques à bord.",
+            'alt'   => "Portrait du commandant Douglas Hurley",
+            'image' => 'images/crew/commander.png',
+        ],
+        'engineer' => [
+            'name'  => 'Anousheh Ansari',
+            'role'  => 'Ingénieure de vol',
+            'bio'   => "Entrepreneuse et ingénieure ; elle gère les systèmes de soutien de vie et coordonne les réparations techniques en vol.",
+            'alt'   => "Portrait de l’ingénieure de vol Anousheh Ansari",
+            'image' => 'images/crew/engineer.png',
+        ],
+        'pilot' => [
+            'name'  => 'Victor Glover',
+            'role'  => 'Pilote',
+            'bio'   => "Spécialiste des manœuvres orbitales, responsable des approches, des amarrages et des trajectoires complexes.",
+            'alt'   => "Portrait du pilote Victor Glover",
+            'image' => 'images/crew/pilot.png',
+        ],
+        'specialist' => [
+            'name'  => 'Mark Shuttleworth',
+            'role'  => 'Spécialiste de mission',
+            'bio'   => "En charge des expériences scientifiques à bord et de l’analyse des données en temps réel.",
+            'alt'   => "Portrait du spécialiste de mission Mark Shuttleworth",
+            'image' => 'images/crew/specialist.png',
+        ],
     ],
-
-    // Ingénieure
-    'engineer' => [
-        'name' => 'Anousheh Ansari',
-        'role' => 'Ingénieure de vol',
-        'bio'  => "Entrepreneure et ingénieure, elle supervise les systèmes vitaux et les réparations en vol.",
-        'alt'  => "Photo de l’ingénieure Anousheh Ansari",
-    ],
-
-    // Pilote
-    'pilot' => [
-        'name' => 'Victor Glover',
-        'role' => 'Pilote',
-        'bio'  => "Spécialiste des manœuvres orbitales, il assure les approches et les trajectoires délicates.",
-        'alt'  => "Photo du pilote Victor Glover",
-    ],
-
-    // Spécialiste
-    'specialist' => [
-        'name' => 'Mark Shuttleworth',
-        'role' => 'Spécialiste de mission',
-        'bio'  => "Responsable des expériences à bord et de l’analyse des données en temps réel.",
-        'alt'  => "Photo du spécialiste Mark Shuttleworth",
-    ],
-
-    // Libellé pour les boutons/puces d’accès aux membres (accessibilité)
-    'goto_member' => 'Aller au membre',
 ];
