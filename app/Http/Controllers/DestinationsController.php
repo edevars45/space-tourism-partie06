@@ -6,67 +6,48 @@ use Illuminate\Http\Request;
 
 class DestinationsController extends Controller
 {
-    // 🔹 Tableau de données des planètes
-    private $planets = [
-        'moon' => [
-            'name' => 'Lune',
-            'description' => "Voyez notre planète comme vous ne l’avez jamais vue auparavant.
-                              Un parfait voyage de détente pour vous aider à prendre du recul
-                              et revenir requinquer. Pendant que vous y êtes,
-                              plongez-vous dans l’histoire en visitant les sites
-                              d’atterrissage de Luna 2 et Apollo 11.",
-            'distance' => '384 400 km',
-            'travel' => '3 jours',
-        ],
-        'mars' => [
-            'name' => 'Mars',
-            'description' => "La planète rouge, pleine de mystères et d’avenir.
-                              Préparez-vous à marcher sur un nouveau monde fascinant...",
-            'distance' => '225 millions km',
-            'travel' => '9 mois',
-        ],
-        'europa' => [
-            'name' => 'Europe',
-            'description' => "La lune glacée de Jupiter, recouverte d’océans souterrains.
-                              Peut-être la prochaine frontière de l’exploration spatiale...",
-            'distance' => '628 millions km',
-            'travel' => '6 ans',
-        ],
-        'titan' => [
-            'name' => 'Titan',
-            'description' => "La lune de Saturne avec ses lacs de méthane et
-                              son atmosphère dense. Une destination unique et mystérieuse...",
-            'distance' => '1,6 milliards km',
-            'travel' => '7 ans',
-        ],
-    ];
+    // Je choisis un ordre d’onglets fixe, identique FR/EN.
+    private array $order = ['moon','mars','europa','titan'];
 
     /**
-     * 🔹 Affiche la destination par défaut
-     * Ici : redirection automatique vers la Lune
+     * Page /destinations/{planet?}
+     * - Je lis les données dans les fichiers de langue (FR/EN).
+     * - Je valide le slug et je fournis à la vue : slug courant, data, liste.
      */
-    public function index()
+    public function show(Request $request, string $planet = 'moon')
     {
-        return redirect()->route('destinations.show', 'moon');
-    }
-
-    /**
-     * 🔹 Affiche une planète précise
-     *
-     * @param string $planet (clé : moon, mars, europa, titan)
-     */
-    public function show($planet)
-    {
-        if (!array_key_exists($planet, $this->planets)) {
-            abort(404); // renvoie une erreur 404 si la planète n’existe pas
+        // 1) Je récupère les données traduites
+        $all = __('destinations.planets');   // tableau associatif
+        if (!is_array($all) || empty($all)) {
+            abort(500, 'Missing i18n data for destinations.');
         }
 
-        $data = $this->planets[$planet];
+        // 2) Je nettoie l’ordre en fonction des clés réellement présentes
+        $planets = [];
+        foreach ($this->order as $slug) {
+            if (isset($all[$slug])) {
+                $planets[$slug] = $all[$slug];
+            }
+        }
+        // Si jamais des clés supplémentaires existent, je les ajoute en fin
+        foreach ($all as $slug => $data) {
+            if (!isset($planets[$slug])) {
+                $planets[$slug] = $data;
+            }
+        }
+
+        // 3) Validation du slug
+        if (!array_key_exists($planet, $planets)) {
+            $planet = array_key_first($planets); // fallback moon
+        }
+
+        // 4) Données pour la vue
+        $data = $planets[$planet];
 
         return view('pages.destinations', [
-            'planet' => $planet, // slug (ex: moon)
-            'data'   => $data,   // données de la planète
-            'planets'=> $this->planets // utile pour le menu (Lune, Mars…)
+            'planet'  => $planet,
+            'data'    => $data,
+            'planets' => $planets, // pour construire les onglets
         ]);
     }
 }

@@ -1,60 +1,68 @@
+{{-- resources/views/pages/home.blade.php --}}
+{{-- Accueil : texte à gauche, bouton rond à droite, proche du header, responsive. --}}
+
 @extends('layouts.app')
-{{-- On utilise le layout principal app.blade.php --}}
 
 @section('title', __('home.title'))
-{{-- Définit le titre de la page --}}
 
 @section('content')
-<section class="min-h-screen bg-[#0B0D17] text-white flex items-center justify-center px-6 md:px-16 relative overflow-hidden">
-  {{--
-    Section principale :
-    - min-h-screen : occupe toute la hauteur de la fenêtre
-    - bg-[#0B0D17] : fond noir profond (même couleur que la maquette)
-    - text-white : texte en blanc
-    - flex items-center justify-center : centre verticalement le contenu
-    - px : marge interne sur les côtés
-  --}}
 
-  <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-24 items-center">
-    {{--
-      Conteneur principal :
-      - max-w-6xl : largeur maximale
-      - grid md:grid-cols-2 : deux colonnes (texte + bouton)
-      - gap-24 : espace entre les colonnes
-    --}}
+  {{-- Bandeau principal (hero) : fond noir pur, pas de centrage vertical --}}
+  <section class="relative bg-black text-white overflow-hidden" aria-label="Accueil">
 
-    {{-- Colonne gauche : Texte --}}
-    <div>
-      <p class="font-barlow-condensed uppercase tracking-[0.25em] text-gray-400 text-sm md:text-base mb-6">
-        Donc vous voulez voyager dans
-      </p>
+    {{-- Conteneur : largeur max, marges internes.
+       pt-* pour remonter sous le header, pb-* pour souffler en bas --}}
+    <div class="max-w-7xl mx-auto w-full px-6 md:px-12 lg:px-16 pt-8 md:pt-12 lg:pt-14 pb-10 md:pb-12">
 
-      <h1 class="font-bellefair uppercase text-6xl sm:text-7xl md:text-8xl mb-6 leading-none">
-        L’espace
-      </h1>
+      {{-- Grille responsive : 1 colonne en mobile, 2 colonnes dès md --}}
+      <div class="grid md:grid-cols-2 gap-10 lg:gap-14 items-start">
 
-      <p class="font-barlow text-[#D0D6F9] text-[15px] md:text-base leading-relaxed max-w-md">
-        Soyons objectifs : si vous voulez aller dans l’espace, vous pouvez aller
-        véritablement dans le véritable espace et non juste planer sur le bord de
-        celui-ci. Eh bien, asseyez-vous parce que nous allons vous donner une
-        expérience vraiment extraordinaire !
-      </p>
+        {{-- Colonne gauche : textes --}}
+        <div>
+          {{-- Petit surtitre fin et espacé --}}
+          <p class="font-barlow-condensed uppercase tracking-[.25em] text-[#D0D6F9] text-xs sm:text-sm md:text-base mb-4 md:mb-5">
+            {{ __('home.intro') }}
+          </p>
+
+          {{-- Gros titre : tailles adaptées selon l’écran, compact au-dessus du paragraphe --}}
+          <h1 class="font-bellefair uppercase leading-none
+                     text-[50px] sm:text-[64px] md:text-[92px] lg:text-[120px] xl:text-[150px]
+                     mb-4 md:mb-5">
+            {{ __('home.space') }}
+          </h1>
+
+          {{-- Paragraphe : largeur de lecture confortable, gris doux neutre sur noir --}}
+          <p class="font-barlow text-gray-300 text-[15px] md:text-base leading-relaxed max-w-xl">
+            {{ __('home.description') }}
+          </p>
+        </div>
+
+        {{-- Colonne droite : bouton rond "Explorer" --}}
+        <div class="flex justify-center md:justify-end items-start md:items-center">
+          <div class="relative group">
+
+            {{-- Halo discret au survol (activé à partir de md) --}}
+            <span class="hidden md:block absolute inset-0 rounded-full transform scale-90 opacity-0
+                         transition-all duration-500 ease-out
+                         group-hover:scale-125 group-hover:opacity-20 bg-white/10"></span>
+
+            {{-- Bouton rond : taille par breakpoint, bien centré, accessible --}}
+            <a href="{{ url('/destinations/moon') }}"
+               class="relative inline-flex items-center justify-center
+                      w-32 h-32 sm:w-40 sm:h-40 md:w-52 md:h-52
+                      rounded-full bg-white text-black
+                      font-bellefair uppercase tracking-widest
+                      text-sm sm:text-base md:text-lg
+                      transition-transform duration-300 hover:scale-105
+                      focus:outline-none focus:ring-4 focus:ring-white/20"
+               aria-label="{{ __('home.explore') }}">
+              <span class="pointer-events-none">{{ __('home.explore') }}</span>
+            </a>
+          </div>
+        </div>
+
+      </div>
     </div>
+  </section>
 
-    {{-- Colonne droite : Bouton Explorer --}}
-    <div class="flex justify-center md:justify-end">
-      <a href="{{ route('destinations') }}"
-         class="relative flex items-center justify-center w-40 h-40 md:w-56 md:h-56 rounded-full bg-white text-[#0B0D17] font-bellefair text-xl uppercase tracking-widest transition duration-300 hover:ring-[40px] hover:ring-white/10">
-        Explorer
-      </a>
-      {{--
-        - w/h : taille du cercle
-        - rounded-full : forme ronde
-        - bg-white : fond blanc
-        - text-[#0B0D17] : texte noir (contraste)
-        - hover:ring : effet halo au survol
-      --}}
-    </div>
-  </div>
-</section>
 @endsection
