@@ -1,44 +1,48 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
 <head>
-    {{-- Définition du jeu de caractères --}}
+    {{-- Meta de base --}}
     <meta charset="utf-8">
-
-    {{-- Règle d’affichage responsive pour mobiles --}}
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    {{-- Jeton CSRF pour sécuriser les formulaires --}}
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    {{-- Titre de la page (reprend le nom défini dans .env) --}}
-    <title>{{ config('app.name', 'Space Tourism') }}</title>
+    {{-- Titre : j’utilise @section('title') si présent, sinon nom appli --}}
+    <title>
+        @hasSection('title')
+            @yield('title') — {{ config('app.name', 'Space Tourism') }}
+        @else
+            {{ config('app.name', 'Space Tourism') }}
+        @endif
+    </title>
 
-    {{-- Chargement des polices (tu peux changer si besoin) --}}
+    {{-- Polices --}}
     <link rel="preconnect" href="https://fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=barlow:400,500,600|bellefair:400|barlow-condensed:400,500&display=swap" rel="stylesheet" />
+    <link
+        href="https://fonts.bunny.net/css?family=barlow:400,500,600|bellefair:400|barlow-condensed:400,500&display=swap"
+        rel="stylesheet" />
 
-    {{-- Importation des fichiers CSS et JS compilés avec Vite --}}
+    {{-- Assets Vite --}}
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
 <body class="font-sans antialiased bg-black text-white">
-
-    {{-- Conteneur principal --}}
     <div class="min-h-screen flex flex-col">
 
-        {{-- Barre de navigation commune à toutes les pages --}}
-        @include('layouts.navigation')
+        {{-- Header maquette (logo + trait + nav translucide) --}}
+        <x-header />
 
-        {{-- Contenu principal injecté depuis chaque page --}}
-        <main class="flex-grow">
+        {{-- Contenu des pages --}}
+        <main class="flex-grow pt-20 md:pt-24">
             @yield('content')
+            {{ $slot ?? '' }}
         </main>
 
-        {{-- Pied de page (facultatif) --}}
+        {{-- Footer simple --}}
         <footer class="bg-gray-900 text-gray-400 text-center py-6 text-sm">
-            © {{ date('Y') }} Space Tourism | Projet Laravel Breeze - Partie 04
+            © {{ date('Y') }} Space Tourism | Projet Laravel Breeze
         </footer>
     </div>
-
 </body>
+
 </html>
