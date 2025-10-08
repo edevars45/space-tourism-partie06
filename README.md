@@ -1,61 +1,34 @@
-# Space Tourism — Partie 05
+# Space Tourism — Partie 06 (Back-office CRUD « Technologies »)
 
-Implémentation du challenge “Space Tourism” (inspiré de Frontend Mentor) avec **Laravel**, **Blade** et **Tailwind CSS**.
-Cette partie met l’accent sur la conformité à la maquette, l’internationalisation (FR/EN) et l’accessibilité.
+Implémentation du module d’administration « Technologies » avec **Laravel**, **Blade** et **Tailwind CSS**.
+Objectif : permettre aux administrateurs et gestionnaires autorisés de créer, lire, mettre à jour et supprimer des technologies, puis d’alimenter la page publique Technology depuis la base de données.
 
----
+## Fonctionnalités
 
-## Objectifs fonctionnels
+- Back-office « Technologies »
+  - Lister les technologies (pagination, tri par ordre).
+  - Créer une technologie (titre, terminologie, description, image, actif, ordre).
+  - Éditer une technologie existante.
+  - Supprimer une technologie existante.
+- Accès restreint
+  - Authentification via Laravel Breeze.
+  - Rôles et permissions via Spatie (ex. Admin, Gestionnaire Technologies).
+- Intégration front
+  - Page publique Technology lisant la BDD (fallback i18n si la table est vide).
+  - Affichage des images via `storage:link`.
 
-- **Header conforme maquette**
-  - Logo à gauche, ligne séparatrice (≥ lg), bloc de navigation translucide à droite
-  - Header **fixe** (collé en haut)
-  - Menu **burger** uniquement en mobile
-  - Soulignement de l’onglet actif
+## Schéma de données proposé
 
-- **Pages publiques**
-  - **Home** : fond noir, contenu rapproché du header, CTA rond “Explorer”
-  - **Destinations** : 4 planètes (Lune, Mars, Europe, Titan), onglet actif correct
-  - **Crew** : liste des membres, avec **fallback i18n** si la BDD est vide
-  - **Technology** : 3 technologies (Lanceur, Spaceport, Capsule), slider accessible (1–2–3), images visibles en mobile
+Table `technologies` :
+- `id` (PK)
+- `title` (string, requis)
+- `terminology` (string, optionnel)
+- `description` (text, optionnel)
+- `image_path` (string, optionnel) – fichier stocké sur le disque `public`
+- `is_active` (bool, défaut true)
+- `order` (unsignedSmallInteger, défaut 1)
+- `timestamps`
 
-- **Internationalisation (FR/EN)**
-  - Textes d’interface et contenus dans `lang/fr` et `lang/en`
-  - Commutateur de langue global (`/lang/{locale}`)
+## Routage
 
-- **Accessibilité**
-  - Attributs ARIA pour les onglets/puces
-  - Focus visibles, libellés explicites
-
-- **Responsive design**
-  - Mobile, tablette et desktop
-
----
-
-## Démonstrations (captures à ajouter)
-Placer les captures dans `public/screenshots/` puis référencer ici :
-
-- Accueil : `public/screenshots/home.png`
-- Destinations : `public/screenshots/destinations.png`
-- Technology : `public/screenshots/technology.png`
-- Crew : `public/screenshots/crew.png`
-
----
-
-## Prérequis
-
-- PHP 8.2+
-- Composer
-- Node.js 18+ et npm
-- Base Laravel (Breeze optionnel)
-- BDD non obligatoire pour la Partie 05 (Crew sait tomber en i18n)
-
----
-
-## Installation
-
-### 1) Cloner le dépôt
-```bash
-git clone https://github.com/edevars45/space-tourism-partie05.git
-cd space-tourism-partie05
-# space-tourism-partie06
+- Back-office (protégé) :
