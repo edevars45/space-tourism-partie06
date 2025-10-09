@@ -2,20 +2,18 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Factories\HasFactory;     // j’utilise la factory pour les seeds/tests
+use Illuminate\Foundation\Auth\User as Authenticatable;    // base utilisateur Laravel
+use Illuminate\Notifications\Notifiable;                   // notifications (mail, etc.)
+use Spatie\Permission\Traits\HasRoles;                     // j’ajoute le trait Spatie pour rôles/permissions
 
 class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, HasRoles;                  // j’active HasRoles ici
 
     /**
-     * The attributes that are mass assignable.
-     *
-     * @var list<string>
+     * Attributs assignables en masse (formulaires).
      */
     protected $fillable = [
         'name',
@@ -24,9 +22,7 @@ class User extends Authenticatable
     ];
 
     /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var list<string>
+     * Attributs cachés lors de la sérialisation (JSON, API).
      */
     protected $hidden = [
         'password',
@@ -34,15 +30,13 @@ class User extends Authenticatable
     ];
 
     /**
-     * Get the attributes that should be cast.
-     *
-     * @return array<string, string>
+     * Casts automatiques des colonnes.
      */
     protected function casts(): array
     {
         return [
-            'email_verified_at' => 'datetime',
-            'password' => 'hashed',
+            'email_verified_at' => 'datetime',             // je parse la date de vérification
+            'password' => 'hashed',                        // je hash automatiquement le mot de passe
         ];
     }
 }
