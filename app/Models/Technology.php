@@ -7,6 +7,19 @@ use Illuminate\Database\Eloquent\Model;
 
 class Technology extends Model
 {
-    /** @use HasFactory<\Database\Factories\TechnologyFactory> */
     use HasFactory;
+
+    protected $fillable = [
+        'name',         // nom
+        'slug',         // slug unique
+        'description',  // texte
+        'website_url',  // URL officielle
+        'image_path',   // chemin image (storage)
+        'is_published', // bool publié ?
+        'order',        // ordre d’affichage
+    ];
+
+    protected $casts = [
+        'is_published' => 'boolean',
+    ];
 }
